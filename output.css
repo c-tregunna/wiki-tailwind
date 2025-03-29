@@ -6,19 +6,14 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-500: oklch(0.637 0.237 25.331);
     --color-zinc-800: oklch(0.274 0.006 286.033);
     --color-zinc-900: oklch(0.21 0.006 285.885);
     --color-white: #fff;
     --spacing: 0.25rem;
-    --text-2xl: 1.5rem;
-    --text-2xl--line-height: calc(2 / 1.5);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
     --text-8xl: 6rem;
     --text-8xl--line-height: 1;
-    --text-9xl: 8rem;
-    --text-9xl--line-height: 1;
     --blur-sm: 8px;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -172,17 +167,11 @@
   }
 }
 @layer utilities {
-  .mt-10 {
-    margin-top: calc(var(--spacing) * 10);
-  }
   .flex {
     display: flex;
   }
   .hidden {
     display: none;
-  }
-  .cursor-pointer {
-    cursor: pointer;
   }
   .items-center {
     align-items: center;
@@ -190,17 +179,11 @@
   .justify-between {
     justify-content: space-between;
   }
-  .self-auto {
-    align-self: auto;
-  }
   .rounded-full {
     border-radius: calc(infinity * 1px);
   }
   .bg-light-grey {
     background-color: var(--color-light-grey);
-  }
-  .bg-red-500 {
-    background-color: var(--color-red-500);
   }
   .bg-white\/90 {
     background-color: color-mix(in oklab, var(--color-white) 90%, transparent);
@@ -211,64 +194,18 @@
   .px-10 {
     padding-inline: calc(var(--spacing) * 10);
   }
-  .px-30 {
-    padding-inline: calc(var(--spacing) * 30);
-  }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
   .py-10 {
     padding-block: calc(var(--spacing) * 10);
   }
-  .py-16 {
-    padding-block: calc(var(--spacing) * 16);
-  }
-  .pt-10 {
-    padding-top: calc(var(--spacing) * 10);
-  }
-  .pt-16 {
-    padding-top: calc(var(--spacing) * 16);
-  }
-  .pt-20 {
-    padding-top: calc(var(--spacing) * 20);
-  }
-  .pt-40 {
-    padding-top: calc(var(--spacing) * 40);
-  }
   .font-ubuntu {
     font-family: var(--font-ubuntu);
-  }
-  .text-2xl {
-    font-size: var(--text-2xl);
-    line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
   .text-4xl {
     font-size: var(--text-4xl);
     line-height: var(--tw-leading, var(--text-4xl--line-height));
-  }
-  .text-9xl {
-    font-size: var(--text-9xl);
-    line-height: var(--tw-leading, var(--text-9xl--line-height));
-  }
-  .leading-0 {
-    --tw-leading: calc(var(--spacing) * 0);
-    line-height: calc(var(--spacing) * 0);
-  }
-  .leading-1 {
-    --tw-leading: calc(var(--spacing) * 1);
-    line-height: calc(var(--spacing) * 1);
-  }
-  .leading-60 {
-    --tw-leading: calc(var(--spacing) * 60);
-    line-height: calc(var(--spacing) * 60);
-  }
-  .leading-80 {
-    --tw-leading: calc(var(--spacing) * 80);
-    line-height: calc(var(--spacing) * 80);
-  }
-  .leading-none {
-    --tw-leading: 1;
-    line-height: 1;
   }
   .text-dark-grey {
     color: var(--color-dark-grey);
@@ -303,10 +240,27 @@
       line-height: var(--tw-leading, var(--text-8xl--line-height));
     }
   }
+  .dark\:bg-dark-grey {
+    &:where(.dark, .dark *) {
+      background-color: var(--color-dark-grey);
+    }
+  }
+  .dark\:fill-light-grey {
+    &:where(.dark, .dark *) {
+      fill: var(--color-light-grey);
+    }
+  }
+  .dark\:text-light-grey {
+    &:where(.dark, .dark *) {
+      color: var(--color-light-grey);
+    }
+  }
 }
-@property --tw-leading {
-  syntax: "*";
-  inherits: false;
+@layer theme {
+  .dark {
+    --color-light-grey: #454545;
+    --color-dark-grey: #ededed;
+  }
 }
 @property --tw-shadow {
   syntax: "*";

@@ -7,3 +7,10 @@
     --color-dark-grey: #454545;
     --font-ubuntu: "Ubuntu", sans-serif;
 }
+
+@layer theme {
+    .dark {
+        --color-light-grey: #454545;
+        --color-dark-grey: #ededed;
+    }
+}
