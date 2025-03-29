@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-light-grey: #ededed;
+    --color-dark-grey: #454545;
+    --font-ubuntu: "Ubuntu", sans-serif;
+}
