@@ -5,18 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="output.css">
     <title>wiki+</title>
 </head>
-<body class="bg-light-grey text-dark-grey  font-ubuntu">
+<body class="bg-light-grey text-dark-grey font-merriweather font-light">
     <header class="flex justify-between items-center px-10 py-10">
-        <h1 class="text-4xl md:text-8xl">wiki+</h1>
-        <button id="theme-btn" class="group rounded-full bg-white/90 px-3 py-2 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm transition">
+        <h1 class="text-4xl md:text-8xl font-ubuntu">wiki+</h1>
+        <button id="theme-btn" class="btn">
             <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="#454545"  class="icon icon-tabler icons-tabler-filled icon-tabler-brightness" id="light-dark-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 3.34a10 10 0 1 1 -15 8.66l.005 -.324a10 10 0 0 1 14.995 -8.336m-9 1.732a8 8 0 0 0 4.001 14.928l-.001 -16a8 8 0 0 0 -4 1.072" /></svg>
         </button>
     </header>
+    <nav class="flex justify-center">
+        <div  class="w-full flex justify-center shadow-[0px_2px_2px] shadow-dark-grey/20 pb-2">
+            <button class="hover:cursor-pointer p-2" type="button" data-drawer-target="drawer-nav" data-drawer-show="drawer-nav" aria-controls="drawer-nav">
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-baseline-density-medium"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h16" /><path d="M4 12h16" /><path d="M4 4h16" /></svg>
+            </button>
+        </div>
 
-<script src="app.js"></script>
+    </nav>
+
+    <div id="drawer-nav" class="fixed top-0 md:top-5 left-0 z-40 h-screen md:h-11/12 p-4 overflow-y-auto transition-transform -translate-x-full w-80 md:rounded-tr-lg md:rounded-br-lg md:shadow-md md:shadow-gray-900/50 md:dark:shadow-gray-800/70 bg-light-grey text-dark-grey " tabindex="-1" aria-labelledby="drawer-label">
+        <!-- close menu button -->
+        <button type="button" data-drawer-hide="drawer-nav" aria-controls="drawer-nav" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm md:text-2xl w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-dark-grey dark:hover:text-light-grey hover:cursor-pointer">
+            X
+            <span class="sr-only">Close menu</span>
+         </button>
+
+         <ul class="mt-10 w-full">
+            <li class="nav-items">Main Page</li>
+            <li class="nav-items">Contents</li>
+            <li class="nav-items">Current Events</li>
+            <li class="nav-items">Random Article</li>
+            <li class="nav-items">About Wiki+</li>
+            <li class="nav-items">Contribute</li>
+        </ul>
+     </div>
+
+     <section>
+        <div class="grid grid-cols-10 gap-2">
+            <img src="assets/art.png" alt="art" class="section-img">
+            <img src="assets/celebrity.png" alt="celebrity" class="section-img">
+            <img src="assets/film.png" alt="film" class="section-img">
+            <img src="assets/food.png" alt="food" class="section-img">
+            <img src="assets/geograpghy.png" alt="geograpghy" class="section-img">
+            <img src="assets/History.png" alt="History" class="section-img">
+            <img src="assets/nature.png" alt="nature" class="section-img">
+            <img src="assets/religion.png" alt="religion" class="section-img">
+            <img src="assets/sport.png" alt="sport" class="section-img">
+            <img src="assets/lucky.png" alt="feeling lucky" class="section-img">
+        </div>
+     </section>
+
+    <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

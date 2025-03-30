@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";
+@source "./node_modules/flowbite";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -6,11 +9,24 @@
     --color-light-grey: #ededed;
     --color-dark-grey: #454545;
     --font-ubuntu: "Ubuntu", sans-serif;
+    --font-merriweather: "Merriweather Sans", sans-serif;
 }
 
 @layer theme {
     .dark {
         --color-light-grey: #454545;
         --color-dark-grey: #ededed;
+    }
+}
+
+@layer utilities {
+    .btn {
+        @apply rounded-full bg-white/90 px-3 py-2 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm transition hover:cursor-pointer;
+    }
+    .nav-items {
+        @apply text-center py-3 text-xl hover:bg-gray-300/50 rounded-sm font-semibold cursor-pointer dark:hover:bg-dark-grey dark:hover:text-light-grey;
+    }
+    .section-img {
+        @apply opacity-90 hover:opacity-100;
     }
 }
