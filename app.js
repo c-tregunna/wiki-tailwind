@@ -8,9 +8,4 @@ console.log(htmlElement)
 themeBtn.addEventListener('click', () => {
     console.log('click')
     htmlElement.classList.toggle('dark')
-    // lightDarkIcon.classList.toggle('icon-dark-mode')
 })
-
-// showNavBtn.addEventListener('click', () => {
-//     navWrapper.classList.toggle('hidden')
-// })

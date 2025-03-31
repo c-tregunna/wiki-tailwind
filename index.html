@@ -9,12 +9,29 @@
     <link rel="stylesheet" href="output.css">
     <title>wiki+</title>
 </head>
-<body class="bg-light-grey text-dark-grey font-merriweather font-light">
-    <header class="flex justify-between items-center px-10 py-10">
+<body class="bg-light-grey text-dark-grey font-merriweather font-light relative">
+    <header class="flex justify-between items-center px-10 py-4">
         <h1 class="text-4xl md:text-8xl font-ubuntu">wiki+</h1>
-        <button id="theme-btn" class="btn">
-            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="#454545"  class="icon icon-tabler icons-tabler-filled icon-tabler-brightness" id="light-dark-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 3.34a10 10 0 1 1 -15 8.66l.005 -.324a10 10 0 0 1 14.995 -8.336m-9 1.732a8 8 0 0 0 4.001 14.928l-.001 -16a8 8 0 0 0 -4 1.072" /></svg>
-        </button>
+        <div class="flex gap-4">
+            <div class="h-10 w-10 rounded-full border flex justify-center items-center" data-popover-target="popover-profile">CT</div>
+            <!-- tooltip popover for login -->
+            <div data-popover id="popover-profile" role="tooltip" class="absolute z-10 invisible inline-block w-30 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                <!-- <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                    <h3 class="font-semibold text-gray-900 dark:text-white">Popover title</h3>
+                </div> -->
+                <div class="px-5 py-8 flex flex-col justify-around gap-2">
+                    <button class="border py-1 px-2">login</button>
+                    <button class="border py-1 px-2">register</button>
+                </div>
+                <div data-popper-arrow></div>
+            </div>
+                <!-- light/dark mode btn -->
+            <button id="theme-btn" class="btn">
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="#454545"  class="icon icon-tabler icons-tabler-filled icon-tabler-brightness" id="light-dark-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 3.34a10 10 0 1 1 -15 8.66l.005 -.324a10 10 0 0 1 14.995 -8.336m-9 1.732a8 8 0 0 0 4.001 14.928l-.001 -16a8 8 0 0 0 -4 1.072" /></svg>
+            </button>
+        </div>
+
+
     </header>
     <nav class="flex justify-center">
         <div  class="w-full flex justify-center shadow-[0px_2px_2px] shadow-dark-grey/20 pb-2">
@@ -24,8 +41,8 @@
         </div>
 
     </nav>
-
-    <div id="drawer-nav" class="fixed top-0 md:top-5 left-0 z-40 h-screen md:h-11/12 p-4 overflow-y-auto transition-transform -translate-x-full w-80 md:rounded-tr-lg md:rounded-br-lg md:shadow-md md:shadow-gray-900/50 md:dark:shadow-gray-800/70 bg-light-grey text-dark-grey " tabindex="-1" aria-labelledby="drawer-label">
+    <!-- navigation drawer start -->
+    <div id="drawer-nav" class="fixed top-0 md:top-5 left-0 z-40 h-screen md:h-11/12 p-4 overflow-y-auto transition-transform  duration-700 -translate-x-full w-80 md:rounded-tr-sm md:rounded-br-sm md:shadow-md md:shadow-gray-900/50 md:dark:shadow-gray-800/70 bg-light-grey text-dark-grey " tabindex="-1" aria-labelledby="drawer-label">
         <!-- close menu button -->
         <button type="button" data-drawer-hide="drawer-nav" aria-controls="drawer-nav" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm md:text-2xl w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-dark-grey dark:hover:text-light-grey hover:cursor-pointer">
             X
@@ -41,21 +58,19 @@
             <li class="nav-items">Contribute</li>
         </ul>
      </div>
+     <!-- navigation drawer start -->
 
-     <section>
-        <div class="grid grid-cols-10 gap-2">
-            <img src="assets/art.png" alt="art" class="section-img">
-            <img src="assets/celebrity.png" alt="celebrity" class="section-img">
-            <img src="assets/film.png" alt="film" class="section-img">
-            <img src="assets/food.png" alt="food" class="section-img">
-            <img src="assets/geograpghy.png" alt="geograpghy" class="section-img">
-            <img src="assets/History.png" alt="History" class="section-img">
-            <img src="assets/nature.png" alt="nature" class="section-img">
-            <img src="assets/religion.png" alt="religion" class="section-img">
-            <img src="assets/sport.png" alt="sport" class="section-img">
-            <img src="assets/lucky.png" alt="feeling lucky" class="section-img">
+     <section class="w-full flex justify-center py-4 px-2">
+        <div class="bg-white p-1 input-border border-l border-r border-r-gray-400 rounded-tl-sm rounded-bl-sm">
+            <img src="assets/search.png" alt="" class="">  
         </div>
+
+        <input type="search" placeholder="search me wiki+" class="w-10/12 max-w-[600px] input-border border-l-0 rounded-tr-sm rounded-br-sm placeholder:text-gray-400">
      </section>
+     <section>
+
+     </section>
+
 
     <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
     <script src="app.js"></script>
