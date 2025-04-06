@@ -18,7 +18,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebas
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-import { getAuth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, onAuthStateChanged, signOut, fetchSignInMethodsForEmail } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -39,44 +39,89 @@ const githubProvider = new GithubAuthProvider()
 const googleLogin = document.getElementById('google-login')
 const githubLogin = document.getElementById('github-login')
 const welcomeMessage = document.getElementById('message')
+const signOutBtn = document.getElementById('sign-out')
+const profileIcon = document.getElementById('profile-icon')
+
+signOutBtn.style.display = "none";
+// profileIcon.style.display = "none";
+// welcomeMessage.style.display = "none";
+
+const handleSignInError = async (error) => {
+    if (error.code === 'auth/account-exists-with-different-credential') {
+      const pendingCred = error.credential;
+      const email = error.customData.email;
+  
+      try {
+        const methods = await fetchSignInMethodsForEmail(auth, email);
+        alert(`This email is already used with: ${methods[0]}. Please sign in using that provider.`);
+  
+        // Optional: If user logs in correctly, you could link the accounts:
+        // const result = await signInWithPopup(auth, correctProvider);
+        // await linkWithCredential(result.user, pendingCred);
+  
+      } catch (fetchError) {
+        console.error("Error fetching sign-in methods:", fetchError);
+      }
+    } else {
+      console.error("Sign-in error:", error);
+      alert("Login failed: " + error.message);
+    }
+  };
+  
 
 const googleUserSignIn = async() => {
     signInWithPopup(auth, googleProvider)
-    .then((result) => {
-        const user = result.user
-        console.log(user);
-    }).catch((error) => {
-        console.error("Error during sign-in:", error);
-        alert("Login failed: " + error.message);
-    })
-}
+    .then(result => console.log(result.user))
+    .catch(handleSignInError);
+    }
 
 const githubUserSignIn = async() => {
     signInWithPopup(auth, githubProvider)
-    .then((result) => {
-        const user = result.user
-        console.log(user);
-    }).catch((error) => {
-        console.error("Error during sign-in:", error);
-        alert("Login failed: " + error.message);
-    })
+  .then(result => console.log(result.user))
+  .catch(handleSignInError);
 }
 
+
+
+const userSignOut = async() => {
+    signOut(auth).then(() => {
+        alert("You have signed out, bye for now!");
+    }).catch((error) => {})
+}
+
+const fallbackText = document.getElementById('fallback-text');
+
 onAuthStateChanged(auth, (user) => {
-    if(user) {
-        // signOutButton.style.display = "block";
-        // message.style.display = "block";
-        welcomeMessage.innerHTML = `Welcome ${user.displayName}`;
-        console.log('click')
-        // userImage.src = user.photoURL
-        console.log(user);
-        // console.log(user.photoURL);
+    console.log("Auth state changed:", user);
+
+    if (user) {
+        const fullName = user.displayName || '';
+        const firstName = fullName.split(' ')[0];
+        signOutBtn.style.display = "block";
+        googleLogin.style.display = "none";
+        githubLogin.style.display = "none";
+        welcomeMessage.innerHTML =`Hi ${firstName}`
+
+        if (user.photoURL) {
+            profileIcon.src = user.photoURL;
+            profileIcon.classList.remove("hidden");
+            fallbackText.classList.add("hidden");
+        } else {
+            profileIcon.classList.add("hidden");
+            fallbackText.classList.remove("hidden");
+            welcomeMessage.innerText = '';
+        }
     } else {
-        // signOutButton.style.display = "none";
-        // message.style.display = "none";
+        signOutBtn.style.display = "none";
+        googleLogin.style.display = "flex";
+        githubLogin.style.display = "flex";
+        welcomeMessage.innerHTML = `Welcome to Wiki+`
+        profileIcon.classList.add("hidden");
+        fallbackText.classList.remove("hidden");
     }
-})
+});
+
 
 googleLogin.addEventListener('click', googleUserSignIn);
 githubLogin.addEventListener('click', githubUserSignIn);
-// signOutButton.addEventListener('click', userSignOut);
+signOutBtn.addEventListener('click', userSignOut);

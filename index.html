@@ -12,15 +12,19 @@
 <body class="bg-light-grey text-dark-grey font-merriweather font-light relative">
     <header class="flex justify-between items-center px-10 py-4">
         <h1 class="text-4xl md:text-8xl font-ubuntu">wiki+</h1>
-        <div class="flex gap-4">
-            <div class="h-10 w-10 rounded-full border flex justify-center items-center" data-popover-target="popover-profile">CT</div>
+        <div class="flex gap-4 items-center">
+            <span id="message"> Welcome to Wiki+</span>
+            <div class="h-10 w-10 rounded-full border flex justify-center items-center relative overflow-hidden" data-popover-target="popover-profile" id="profile-icon-container">
+                <span id="fallback-text" class="text-sm">W+</span>
+                <img src="" alt="profile icon" id="profile-icon" class="absolute inset-0 w-full h-full rounded-full object-cover hidden" />
+              </div>
+              
             <!-- tooltip popover for login -->
             <div data-popover id="popover-profile" role="tooltip" class="absolute z-10 invisible inline-block w-30 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-                <!-- <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
-                    <h3 class="font-semibold text-gray-900 dark:text-white">Popover title</h3>
-                </div> -->
                 <div class="px-5 py-8 flex flex-col justify-around gap-2">
-                    <button class="border py-1 px-2" onclick="location.href='login.html'">login</button>
+                    <button class="login-btn" id="google-login">Login with Google</button>
+                    <button class="login-btn" id="github-login">Login with Github</button>
+                    <button class="login-btn"  id="sign-out">Sign out</button>
                 </div>
                 <div data-popper-arrow></div>
             </div>
@@ -72,6 +76,6 @@
 
 
     <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js" type="module"></script>
 </body>
 </html>
