@@ -21,9 +21,12 @@
               
             <!-- tooltip popover for login -->
             <div data-popover id="popover-profile" role="tooltip" class="absolute z-10 invisible inline-block w-30 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-                <div class="px-5 py-8 flex flex-col justify-around gap-2">
-                    <button class="login-btn" id="google-login">Login with Google</button>
-                    <button class="login-btn" id="github-login">Login with Github</button>
+                <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                    <h3 class="font-semibold text-gray-900 dark:text-white">Log In</h3>
+                </div>
+                <div class="px-5 py-4 flex flex-col justify-around gap-2">
+                    <button class="login-btn" id="google-login">Google</button>
+                    <button class="login-btn" id="github-login">Github</button>
                     <button class="login-btn"  id="sign-out">Sign out</button>
                 </div>
                 <div data-popper-arrow></div>
@@ -70,7 +73,8 @@
 
         <input type="search" placeholder="search me wiki+" class="w-10/12 max-w-[600px] input-border border-l-0 rounded-tr-sm rounded-br-sm placeholder:text-gray-400">
      </section>
-     <section>
+     <h2 class="text-xl font-bold mb-4 text-center">Featured Article</h2>
+     <section id="featured-article" class="w-1/2 mx-auto border rounded-sm p-4">
 
      </section>
 

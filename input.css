@@ -6,7 +6,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --color-light-grey: #ededed;
+    --color-light-grey: #fefefe;
     --color-dark-grey: #454545;
     --font-ubuntu: "Ubuntu", sans-serif;
     --font-merriweather: "Merriweather Sans", sans-serif;
@@ -15,7 +15,7 @@
 @layer theme {
     .dark {
         --color-light-grey: #454545;
-        --color-dark-grey: #ededed;
+        --color-dark-grey: #fefefe;
     }
 }
 

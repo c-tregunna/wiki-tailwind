@@ -6,7 +6,6 @@ const navWrapper = document.getElementById('nav-wrapper')
 const htmlElement = document.documentElement 
 
 themeBtn.addEventListener('click', () => {
-    console.log('click')
     htmlElement.classList.toggle('dark')
 })
 
@@ -125,3 +124,26 @@ onAuthStateChanged(auth, (user) => {
 googleLogin.addEventListener('click', googleUserSignIn);
 githubLogin.addEventListener('click', githubUserSignIn);
 signOutBtn.addEventListener('click', userSignOut);
+
+
+fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/Danger_Mouse_(1981_TV_series)`)
+.then(response => response.json()) // Convert response to JSON
+.then(data => createInformation(data)) // Pass data to function
+.catch(error => console.error("Error fetching data:", error)); // Catch any errors
+
+const featuredArticle = document.getElementById('featured-article')
+
+function createInformation(data) {
+    console.log(data)
+    featuredArticle.innerHTML = `
+    <div class="flex flex-col md:flex-row items-center gap-4">
+        <img src="https://upload.wikimedia.org/wikipedia/en/d/d8/DangerMouseTVtitle.jpg" class="w-full md:w-1/4">
+        <div>
+            <h2 class="text-lg mb-2">${data.title}</h2>
+            ${data.extract_html || "No description available."}
+            <p>Read full article <a href="https://en.wikipedia.org/wiki/Danger_Mouse_(1981_TV_series)">here</a>
+        </div>
+    </div>
+
+`;
+}

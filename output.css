@@ -41,6 +41,7 @@
     --font-weight-light: 300;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
+    --font-weight-bold: 700;
     --tracking-wider: 0.05em;
     --leading-relaxed: 1.625;
     --radius-sm: 0.25rem;
@@ -49,7 +50,7 @@
     --blur-sm: 8px;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    --color-light-grey: #ededed;
+    --color-light-grey: #fefefe;
     --color-dark-grey: #454545;
     --font-ubuntu: "Ubuntu", sans-serif;
     --font-merriweather: "Merriweather Sans", sans-serif;
@@ -1312,6 +1313,9 @@
   .h-\[calc\(100\%-1rem\)\] {
     height: calc(100% - 1rem);
   }
+  .h-full {
+    height: 100%;
+  }
   .h-screen {
     height: 100vh;
   }
@@ -1957,6 +1961,9 @@
       stroke: var(--color-gray-700) !important;
     }
   }
+  .object-cover {
+    object-fit: cover;
+  }
   .apexcharts-legend {
     .apexcharts-canvas & {
       padding: 0 !important;
@@ -2146,6 +2153,10 @@
   .leading-relaxed {
     --tw-leading: var(--leading-relaxed);
     line-height: var(--leading-relaxed);
+  }
+  .font-bold {
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
   }
   .font-light {
     --tw-font-weight: var(--font-weight-light);
@@ -2431,6 +2442,16 @@
       height: calc(11/12 * 100%);
     }
   }
+  .md\:w-1\/4 {
+    @media (width >= 48rem) {
+      width: calc(1/4 * 100%);
+    }
+  }
+  .md\:flex-row {
+    @media (width >= 48rem) {
+      flex-direction: row;
+    }
+  }
   .md\:rounded-tr-sm {
     @media (width >= 48rem) {
       border-top-right-radius: var(--radius-sm);
@@ -2669,7 +2690,7 @@
 @layer theme {
   .dark {
     --color-light-grey: #454545;
-    --color-dark-grey: #ededed;
+    --color-dark-grey: #fefefe;
   }
 }
 .btn {
