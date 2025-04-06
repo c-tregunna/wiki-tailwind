@@ -33,3 +33,6 @@
 .input-border {
     @apply border-t border-b;
 }
+.login-btn {
+    @apply border flex gap-2 items-center rounded-sm px-4 py-2 cursor-pointer hover:bg-dark-grey hover:text-light-grey dark:hover:bg-light-grey dark:hover:text-dark-grey;
+}
