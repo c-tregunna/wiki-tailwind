@@ -96,10 +96,10 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         const fullName = user.displayName || '';
         const firstName = fullName.split(' ')[0];
-        signOutBtn.style.display = "block";
+        signOutBtn.style.display = "flex";
         googleLogin.style.display = "none";
         githubLogin.style.display = "none";
-        welcomeMessage.innerHTML =`Hi ${firstName}`
+        welcomeMessage.innerHTML =`Hi ${firstName}!`
 
         if (user.photoURL) {
             profileIcon.src = user.photoURL;
