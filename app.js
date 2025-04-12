@@ -152,19 +152,45 @@ searchBtn.addEventListener('click', () => {
 const featuredArticle = document.getElementById('featured-article')
 
 function createInformation(data) {
-    console.log(data)
-    featuredArticle.innerHTML = `
-    <div class="flex flex-col md:flex-row items-center gap-4">
-        <img src="${data.thumbnail.source}" class="w-full md:w-1/4">
-        <div>
-            <h2 class="text-lg mb-2">${data.title}</h2>
-            ${data.extract_html || "No description available."}
-            <p>Read full article <a href="https://en.wikipedia.org/wiki/Danger_Mouse_(1981_TV_series)">here</a>
-        </div>
-    </div>
+  console.log(data);
 
-`;
+  // Check if it's a disambiguation page or missing important info
+  if (data.type === "disambiguation" || !data.thumbnail) {
+      featuredArticle.innerHTML = `
+      <div class="text-center">
+          <h2 class="text-lg font-semibold mb-2">${data.title}</h2>
+          <p>This search term refers to multiple topics. Please be more specific or <a href="https://en.wikipedia.org/wiki/${data.title}" class="text-blue-600 underline" target="_blank">view the full disambiguation page here</a>.</p>
+      </div>`;
+      return;
+  }
+
+  // Normal article rendering
+  featuredArticle.innerHTML = `
+  <div class="flex flex-col md:flex-row items-center gap-4">
+      <img src="${data.thumbnail.source}" class="w-full md:w-1/4">
+      <div>
+          <h2 class="text-lg mb-2">${data.title}</h2>
+          ${data.extract_html || "No description available."}
+          <p class="mt-2">Read full article <a href="https://en.wikipedia.org/wiki/${data.title}" class="text-blue-600 underline" target="_blank">here</a></p>
+      </div>
+  </div>`;
 }
+
+
+// function createInformation(data) {
+//     console.log(data)
+//     featuredArticle.innerHTML = `
+//     <div class="flex flex-col md:flex-row items-center gap-4">
+//         <img src="${data.thumbnail.source}" class="w-full md:w-1/4">
+//         <div>
+//             <h2 class="text-lg mb-2">${data.title}</h2>
+//             ${data.extract_html || "No description available."}
+//             <p>Read full article <a href="https://en.wikipedia.org/wiki/Danger_Mouse_(1981_TV_series)">here</a>
+//         </div>
+//     </div>
+
+// `;
+// }
 
 
 
