@@ -80,8 +80,6 @@ const githubUserSignIn = async() => {
   .catch(handleSignInError);
 }
 
-
-
 const userSignOut = async() => {
     signOut(auth).then(() => {
         alert("You have signed out, bye for now!");
@@ -126,10 +124,30 @@ githubLogin.addEventListener('click', githubUserSignIn);
 signOutBtn.addEventListener('click', userSignOut);
 
 
-fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/Danger_Mouse_(1981_TV_series)`)
-.then(response => response.json()) // Convert response to JSON
-.then(data => createInformation(data)) // Pass data to function
-.catch(error => console.error("Error fetching data:", error)); // Catch any errors
+
+// search
+
+const searchBox = document.getElementById('search-box')
+const searchBtn = document.getElementById('search-btn')
+
+
+
+
+const searchWikiApi = (searchValue) => {
+
+    fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${searchValue}`)
+    .then(response => response.json()) // Convert response to JSON
+    .then(data => createInformation(data)) // Pass data to function
+    .catch(error => console.error("Error fetching data:", error)); // Catch any errors
+}
+
+searchBtn.addEventListener('click', () => {
+  let searchValue = searchBox.value
+  searchWikiApi(searchValue)
+  console.log(searchValue)
+  searchBox.value = ""
+})
+
 
 const featuredArticle = document.getElementById('featured-article')
 
@@ -137,7 +155,7 @@ function createInformation(data) {
     console.log(data)
     featuredArticle.innerHTML = `
     <div class="flex flex-col md:flex-row items-center gap-4">
-        <img src="https://upload.wikimedia.org/wikipedia/en/d/d8/DangerMouseTVtitle.jpg" class="w-full md:w-1/4">
+        <img src="${data.thumbnail.source}" class="w-full md:w-1/4">
         <div>
             <h2 class="text-lg mb-2">${data.title}</h2>
             ${data.extract_html || "No description available."}
@@ -147,3 +165,7 @@ function createInformation(data) {
 
 `;
 }
+
+
+
+
