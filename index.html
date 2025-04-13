@@ -9,81 +9,53 @@
     <link rel="stylesheet" href="output.css">
     <title>wiki+</title>
 </head>
-<body class="bg-light-grey text-dark-grey font-merriweather font-light relative">
-    <header class="flex justify-between items-center px-10 py-4">
-        <h1 class="text-4xl md:text-8xl font-ubuntu">wiki+</h1>
-        <div class="flex gap-4 items-center">
-            <span id="message" class="font-black"> Welcome to Wiki+</span>
-            <div class="h-10 w-10 rounded-full border flex justify-center items-center relative overflow-hidden" data-popover-target="popover-profile" id="profile-icon-container">
-                <span id="fallback-text" class="text-sm font-ubuntu font-black">W+</span>
-                <img src="" alt="profile icon" id="profile-icon" class="absolute inset-0 w-full h-full rounded-full object-cover hidden" />
-              </div>
-              
-            <!-- tooltip popover for login -->
-            <div data-popover id="popover-profile" role="tooltip" class="absolute z-10 invisible inline-block w-30 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-                <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
-                    <h3 class="font-semibold text-gray-900 dark:text-white">Log In</h3>
+<body class=" text-dark-grey font-merriweather font-light relative h-screen">
+    <div class="max-w-[1000px] mx-auto h-screen bg-light-grey">
+        <header class="flex justify-between items-center px-10 py-4 flex-col md:flex-row">
+            <h1 class="text-4xl md:text-8xl font-ubuntu mb-4">wiki+</h1>
+            <div class="flex gap-4 items-center">
+                <span id="message" class="font-black text-sm md:text-lg"> Welcome to Wiki+</span>
+                <div class="h-10 w-10 rounded-full border flex justify-center items-center relative overflow-hidden" data-popover-target="popover-profile" id="profile-icon-container">
+                    <span id="fallback-text" class="text-sm font-ubuntu font-black">W+</span>
+                    <img src="" alt="profile icon" id="profile-icon" class="absolute inset-0 w-full h-full rounded-full object-cover hidden" />
                 </div>
-                <div class="px-5 py-4 flex flex-col justify-around gap-2">
-                    <button class="login-btn" id="google-login">
-                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-brand-google"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2a9.96 9.96 0 0 1 6.29 2.226a1 1 0 0 1 .04 1.52l-1.51 1.362a1 1 0 0 1 -1.265 .06a6 6 0 1 0 2.103 6.836l.001 -.004h-3.66a1 1 0 0 1 -.992 -.883l-.007 -.117v-2a1 1 0 0 1 1 -1h6.945a1 1 0 0 1 .994 .89c.04 .367 .061 .737 .061 1.11c0 5.523 -4.477 10 -10 10s-10 -4.477 -10 -10s4.477 -10 10 -10z" /></svg>
-                    </button>
-                    <button class="login-btn" id="github-login">
-                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-brand-github"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5.315 2.1c.791 -.113 1.9 .145 3.333 .966l.272 .161l.16 .1l.397 -.083a13.3 13.3 0 0 1 4.59 -.08l.456 .08l.396 .083l.161 -.1c1.385 -.84 2.487 -1.17 3.322 -1.148l.164 .008l.147 .017l.076 .014l.05 .011l.144 .047a1 1 0 0 1 .53 .514a5.2 5.2 0 0 1 .397 2.91l-.047 .267l-.046 .196l.123 .163c.574 .795 .93 1.728 1.03 2.707l.023 .295l.007 .272c0 3.855 -1.659 5.883 -4.644 6.68l-.245 .061l-.132 .029l.014 .161l.008 .157l.004 .365l-.002 .213l-.003 3.834a1 1 0 0 1 -.883 .993l-.117 .007h-6a1 1 0 0 1 -.993 -.883l-.007 -.117v-.734c-1.818 .26 -3.03 -.424 -4.11 -1.878l-.535 -.766c-.28 -.396 -.455 -.579 -.589 -.644l-.048 -.019a1 1 0 0 1 .564 -1.918c.642 .188 1.074 .568 1.57 1.239l.538 .769c.76 1.079 1.36 1.459 2.609 1.191l.001 -.678l-.018 -.168a5.03 5.03 0 0 1 -.021 -.824l.017 -.185l.019 -.12l-.108 -.024c-2.976 -.71 -4.703 -2.573 -4.875 -6.139l-.01 -.31l-.004 -.292a5.6 5.6 0 0 1 .908 -3.051l.152 -.222l.122 -.163l-.045 -.196a5.2 5.2 0 0 1 .145 -2.642l.1 -.282l.106 -.253a1 1 0 0 1 .529 -.514l.144 -.047l.154 -.03z" /></svg>
-                    </button>
-                    <button class="login-btn"  id="sign-out">
-                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" /><path d="M15 12h-12l3 -3" /><path d="M6 15l-3 -3" /></svg>
-                    </button>
+                
+                <!-- tooltip popover for login -->
+                <div data-popover id="popover-profile" role="tooltip" class="absolute z-10 invisible inline-block w-30 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                    <div class="px-3 py-2 bg-gray-100 border-b border-gray-200 rounded-t-lg dark:border-gray-600 dark:bg-gray-700">
+                        <h3 class="font-semibold text-gray-900 dark:text-white">Log In</h3>
+                    </div>
+                    <div class="px-5 py-4 flex flex-col justify-around gap-2">
+                        <button class="login-btn" id="google-login">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-brand-google"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2a9.96 9.96 0 0 1 6.29 2.226a1 1 0 0 1 .04 1.52l-1.51 1.362a1 1 0 0 1 -1.265 .06a6 6 0 1 0 2.103 6.836l.001 -.004h-3.66a1 1 0 0 1 -.992 -.883l-.007 -.117v-2a1 1 0 0 1 1 -1h6.945a1 1 0 0 1 .994 .89c.04 .367 .061 .737 .061 1.11c0 5.523 -4.477 10 -10 10s-10 -4.477 -10 -10s4.477 -10 10 -10z" /></svg>
+                        </button>
+                        <button class="login-btn" id="github-login">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-brand-github"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5.315 2.1c.791 -.113 1.9 .145 3.333 .966l.272 .161l.16 .1l.397 -.083a13.3 13.3 0 0 1 4.59 -.08l.456 .08l.396 .083l.161 -.1c1.385 -.84 2.487 -1.17 3.322 -1.148l.164 .008l.147 .017l.076 .014l.05 .011l.144 .047a1 1 0 0 1 .53 .514a5.2 5.2 0 0 1 .397 2.91l-.047 .267l-.046 .196l.123 .163c.574 .795 .93 1.728 1.03 2.707l.023 .295l.007 .272c0 3.855 -1.659 5.883 -4.644 6.68l-.245 .061l-.132 .029l.014 .161l.008 .157l.004 .365l-.002 .213l-.003 3.834a1 1 0 0 1 -.883 .993l-.117 .007h-6a1 1 0 0 1 -.993 -.883l-.007 -.117v-.734c-1.818 .26 -3.03 -.424 -4.11 -1.878l-.535 -.766c-.28 -.396 -.455 -.579 -.589 -.644l-.048 -.019a1 1 0 0 1 .564 -1.918c.642 .188 1.074 .568 1.57 1.239l.538 .769c.76 1.079 1.36 1.459 2.609 1.191l.001 -.678l-.018 -.168a5.03 5.03 0 0 1 -.021 -.824l.017 -.185l.019 -.12l-.108 -.024c-2.976 -.71 -4.703 -2.573 -4.875 -6.139l-.01 -.31l-.004 -.292a5.6 5.6 0 0 1 .908 -3.051l.152 -.222l.122 -.163l-.045 -.196a5.2 5.2 0 0 1 .145 -2.642l.1 -.282l.106 -.253a1 1 0 0 1 .529 -.514l.144 -.047l.154 -.03z" /></svg>
+                        </button>
+                        <button class="login-btn"  id="sign-out">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2" /><path d="M15 12h-12l3 -3" /><path d="M6 15l-3 -3" /></svg>
+                        </button>
+                    </div>
+                    <div data-popper-arrow></div>
                 </div>
-                <div data-popper-arrow></div>
+                    <!-- light/dark mode btn -->
+                <button id="theme-btn" class="btn">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="#454545"  class="icon icon-tabler icons-tabler-filled icon-tabler-brightness" id="light-dark-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 3.34a10 10 0 1 1 -15 8.66l.005 -.324a10 10 0 0 1 14.995 -8.336m-9 1.732a8 8 0 0 0 4.001 14.928l-.001 -16a8 8 0 0 0 -4 1.072" /></svg>
+                </button>
             </div>
-                <!-- light/dark mode btn -->
-            <button id="theme-btn" class="btn">
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="#454545"  class="icon icon-tabler icons-tabler-filled icon-tabler-brightness" id="light-dark-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 3.34a10 10 0 1 1 -15 8.66l.005 -.324a10 10 0 0 1 14.995 -8.336m-9 1.732a8 8 0 0 0 4.001 14.928l-.001 -16a8 8 0 0 0 -4 1.072" /></svg>
-            </button>
-        </div>
+        </header>
 
+        <main class="h-2/3 w-full flex justify-center items-center">
+            <section class="w-full flex justify-center py-4 px-2 flex-col items-center">
+                <!-- <button class="bg-white p-1 input-border border-l border-r border-r-gray-400 rounded-tl-sm rounded-bl-sm" id="search-btn">
+                    <img src="assets/search.png" alt="" class="">  
+                </button> -->
 
-    </header>
-    <nav class="flex justify-center">
-        <div  class="w-full flex justify-center shadow-[0px_2px_2px] shadow-dark-grey/20 pb-2">
-            <button class="hover:cursor-pointer p-2" type="button" data-drawer-target="drawer-nav" data-drawer-show="drawer-nav" aria-controls="drawer-nav">
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-baseline-density-medium"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h16" /><path d="M4 12h16" /><path d="M4 4h16" /></svg>
-            </button>
-        </div>
-
-    </nav>
-    <!-- navigation drawer start -->
-    <div id="drawer-nav" class="fixed top-0 md:top-5 left-0 z-40 h-screen md:h-11/12 p-4 overflow-y-auto transition-transform  duration-700 -translate-x-full w-80 md:rounded-tr-sm md:rounded-br-sm md:shadow-md md:shadow-gray-900/50 md:dark:shadow-gray-800/70 bg-light-grey text-dark-grey " tabindex="-1" aria-labelledby="drawer-label">
-        <!-- close menu button -->
-        <button type="button" data-drawer-hide="drawer-nav" aria-controls="drawer-nav" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm md:text-2xl w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-dark-grey dark:hover:text-light-grey hover:cursor-pointer">
-            X
-            <span class="sr-only">Close menu</span>
-         </button>
-
-         <ul class="mt-10 w-full">
-            <li class="nav-items">Main Page</li>
-            <li class="nav-items">Contents</li>
-            <li class="nav-items">Current Events</li>
-            <li class="nav-items">Random Article</li>
-            <li class="nav-items">About Wiki+</li>
-            <li class="nav-items">Contribute</li>
-        </ul>
-     </div>
-     <!-- navigation drawer end -->
-
-     <section class="w-full flex justify-center py-4 px-2">
-        <button class="bg-white p-1 input-border border-l border-r border-r-gray-400 rounded-tl-sm rounded-bl-sm" id="search-btn">
-            <img src="assets/search.png" alt="" class="">  
-        </button>
-
-        <input type="search" placeholder="search wiki+" class="w-10/12 max-w-[600px] input-border border-l-0 rounded-tr-sm rounded-br-sm placeholder:text-gray-400" id="search-box">
-     </section>
-
-     <h2 class="text-xl font-bold mb-4 text-center">Featured Article</h2>
-     <section id="featured-article" class="w-1/2 mx-auto border rounded-sm p-4">
-
-     </section>
+                <input type="search" placeholder="search wiki+" class="w-10/12 max-w-[600px] input-border border-dark-grey/30 rounded-xs py-4 placeholder:text-gray-400 focus:drop-shadow-xl focus:border-dark-grey/10 focus:ring-0" id="search-box">
+                <button id="search-btn" class="ring-1 py-4 px-20 uppercase ring-black/30 mt-4 rounder-xs text-dark-grey font-medium dark:bg-dark-grey dark:text-light-grey">Let's go!</button>
+            </section>
+        </main>
+    </div>
 
 
     <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
