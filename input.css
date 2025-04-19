@@ -8,8 +8,8 @@
 @theme {
     --color-light-grey: #fefefe;
     --color-dark-grey: #454545;
-    --font-ubuntu: "Ubuntu", sans-serif;
-    --font-merriweather: "Merriweather Sans", sans-serif;
+    --font-inter: "Inter", sans-serif;
+    --font-space: "Space Grotesk", sans-serif;
 }
 
 @layer theme {

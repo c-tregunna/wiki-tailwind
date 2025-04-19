@@ -134,6 +134,7 @@ const searchBox = document.getElementById('search-box')
 const searchBtn = document.getElementById('search-btn')
 const articleModal = document.getElementById('article-modal')
 const closeModalBtn = document.getElementById('close-modal')
+const modalBackground = document.getElementById('modal-backdrop')
 
 
 
@@ -153,10 +154,12 @@ searchBox.addEventListener('keypress', (e) => {
 })
 
 searchBtn.addEventListener('click', () => {
-  articleModal.classList.add('w-11/12')
-  articleModal.classList.add('h-11/12')
-  articleModal.classList.remove('overflow-auto')
-  articleModal.classList.remove('overflow-hidden')
+  modalBackground.classList.remove('opacity-0', 'pointer-events-none');
+  modalBackground.classList.add('opacity-100');
+
+  articleModal.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+  articleModal.classList.add('opacity-100', 'scale-100', 'w-11/12', 'h-11/12');
+  
   let searchValue = searchBox.value
   searchWikiApi(searchValue)
   console.log(searchValue)
@@ -164,9 +167,11 @@ searchBtn.addEventListener('click', () => {
 })
 
 closeModalBtn.addEventListener('click', () => {
-  articleModal.classList.remove('w-11/12')
-  articleModal.classList.remove('h-11/12')
-  articleModal.classList.add('overflow-hidden')
+  modalBackground.classList.add('opacity-0', 'pointer-events-none');
+  modalBackground.classList.remove('opacity-100');
+
+  articleModal.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+  articleModal.classList.remove('opacity-100', 'scale-100', 'w-11/12', 'h-11/12');
 })
 
 

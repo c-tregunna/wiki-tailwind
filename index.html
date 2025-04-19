@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="output.css">
     <title>wiki+</title>
 </head>
-<body class="text-dark-grey bg-light-grey font-merriweather font-light relative h-screen">
+<body class="text-dark-grey bg-light-grey font-space font-light relative h-screen">
     <div class="max-w-[1000px] mx-auto h-screen bg-light-grey">
         <header class="flex justify-between items-center px-10 py-4 flex-col md:flex-row">
-            <h1 class="text-4xl md:text-8xl font-ubuntu mb-4">wiki+</h1>
+            <h1 class="text-4xl md:text-8xl font-inter mb-4">wiki+</h1>
             <div class="flex gap-4 items-center">
                 <span id="message" class="font-black text-sm md:text-lg"> Welcome to Wiki+</span>
                 <div class="h-10 w-10 rounded-full border flex justify-center items-center relative overflow-hidden" data-popover-target="popover-profile" id="profile-icon-container">
@@ -54,17 +54,22 @@
                 <input type="search" placeholder="search wiki+" class="w-10/12 max-w-[600px] input-border border-dark-grey/30 rounded-xs py-4 placeholder:text-gray-400 focus:drop-shadow-xl focus:border-dark-grey/10 focus:ring-0" id="search-box">
                 <button id="search-btn" class="ring-1 py-4 px-20 uppercase ring-black/30 mt-4 rounder-xs text-dark-grey font-medium dark:bg-dark-grey dark:text-light-grey cursor-pointer">Let's go!</button>
             </section>
-            <section class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-0 h-0 duration-500 overflow-hidden bg-light-grey shadow-2xl shadow-slate-600 rounded-lg" id="article-modal">
-                <div class="flex bg-slate-200/30 py-2 px-4 justify-between items-center">
-                    <span class="text-xl uppercase cursor-pointer" id="close-modal">Close</span>
-                    <span class="cursor-pointer hover:scale-105">
-                        <svg  xmlns="http://www.w3.org/2000/svg"  width="30"  height="30"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-bookmarks"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10v11l-5 -3l-5 3v-11a3 3 0 0 1 3 -3h4a3 3 0 0 1 3 3z" /><path d="M11 3h5a3 3 0 0 1 3 3v11" /></svg>
-                    </span>
-                </div>
-                <div id="featured-article" class="overflow-y-auto h-[calc(100%-3rem)]">
-                    <!-- article will sit here -->
-                </div>
-            </section>
+
+            <!-- artical modal -->
+            <div id="modal-backdrop" class="fixed inset-0 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-500">
+                <section id="article-modal" class="opacity-0 scale-90 w-0 h-0 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-500 ease-out bg-light-grey shadow-2xl rounded-lg pointer-events-none">
+
+                    <div class="flex bg-slate-200/30 py-2 px-4 justify-between items-center">
+                        <span class="text-xl uppercase cursor-pointer" id="close-modal">Close</span>
+                        <span class="cursor-pointer hover:scale-105">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="30"  height="30"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-bookmarks"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 10v11l-5 -3l-5 3v-11a3 3 0 0 1 3 -3h4a3 3 0 0 1 3 3z" /><path d="M11 3h5a3 3 0 0 1 3 3v11" /></svg>
+                        </span>
+                    </div>
+                    <div id="featured-article" class="overflow-y-auto h-[calc(100%-3rem)]">
+                        <!-- article will sit here -->
+                    </div>
+                </section>
+            </div>
         </main>
     </div>
 
