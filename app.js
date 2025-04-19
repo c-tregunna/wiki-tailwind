@@ -39,6 +39,7 @@ const googleLogin = document.getElementById('google-login')
 const githubLogin = document.getElementById('github-login')
 const welcomeMessage = document.getElementById('message')
 const signOutBtn = document.getElementById('sign-out')
+const bookmarks = document.getElementById('favourites')
 const profileIcon = document.getElementById('profile-icon')
 
 signOutBtn.style.display = "none";
@@ -95,6 +96,7 @@ onAuthStateChanged(auth, (user) => {
         const fullName = user.displayName || '';
         const firstName = fullName.split(' ')[0];
         signOutBtn.style.display = "flex";
+        bookmarks.style.display = "flex";
         googleLogin.style.display = "none";
         githubLogin.style.display = "none";
         welcomeMessage.innerHTML =`Hi ${firstName}!`
@@ -110,6 +112,7 @@ onAuthStateChanged(auth, (user) => {
         }
     } else {
         signOutBtn.style.display = "none";
+        bookmarks.style.display = "none";
         googleLogin.style.display = "flex";
         githubLogin.style.display = "flex";
         welcomeMessage.innerHTML = `Welcome to Wiki+`
@@ -142,9 +145,17 @@ const searchWikiApi = (searchValue) => {
     .catch(error => console.error("Error fetching data:", error)); // Catch any errors
 }
 
+searchBox.addEventListener('keypress', (e) => {
+  if(e.key === "Enter") {
+    e.preventDefault()
+    searchBtn.click()
+  }
+})
+
 searchBtn.addEventListener('click', () => {
   articleModal.classList.add('w-11/12')
   articleModal.classList.add('h-11/12')
+  articleModal.classList.remove('overflow-auto')
   articleModal.classList.remove('overflow-hidden')
   let searchValue = searchBox.value
   searchWikiApi(searchValue)
@@ -176,31 +187,24 @@ function createInformation(data) {
 
   // Normal article rendering
   featuredArticle.innerHTML = `
-  <div class="flex flex-col md:flex-row items-center gap-4">
-      <img src="${data.thumbnail.source}" class="w-full md:w-1/4">
-      <div>
-          <h2 class="text-lg mb-2">${data.title}</h2>
-          ${data.extract_html || "No description available."}
-          <p class="mt-2">Read full article <a href="https://en.wikipedia.org/wiki/${data.title}" class="text-blue-600 underline" target="_blank">here</a></p>
+  <div class="h-full overflow-y-auto px-4 py-6">
+    <div class="flex flex-col items-center gap-4 relative">
+
+      <h2 class="text-lg md:text-4xl mb-2">${data.title}</h2>
+
+      <div class="bg-dark-grey/15 p-4 rounded-sm outline outline-white/25 w-full md:w-1/4 mb-6">
+        <img src="${data.thumbnail.source}" class="object-cover mx-auto rounded-sm">
       </div>
-  </div>`;
+
+      ${data.extract_html || "No description available."}
+
+      <p class="mt-2">Read full article <a href="https://en.wikipedia.org/wiki/${data.title}" class="text-blue-600 underline" target="_blank">here</a></p>
+    </div>
+  </div>
+`;
+
+
 }
-
-
-// function createInformation(data) {
-//     console.log(data)
-//     featuredArticle.innerHTML = `
-//     <div class="flex flex-col md:flex-row items-center gap-4">
-//         <img src="${data.thumbnail.source}" class="w-full md:w-1/4">
-//         <div>
-//             <h2 class="text-lg mb-2">${data.title}</h2>
-//             ${data.extract_html || "No description available."}
-//             <p>Read full article <a href="https://en.wikipedia.org/wiki/Danger_Mouse_(1981_TV_series)">here</a>
-//         </div>
-//     </div>
-
-// `;
-// }
 
 
 
