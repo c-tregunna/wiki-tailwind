@@ -129,7 +129,8 @@ signOutBtn.addEventListener('click', userSignOut);
 
 const searchBox = document.getElementById('search-box')
 const searchBtn = document.getElementById('search-btn')
-
+const articleModal = document.getElementById('article-modal')
+const closeModalBtn = document.getElementById('close-modal')
 
 
 
@@ -142,10 +143,19 @@ const searchWikiApi = (searchValue) => {
 }
 
 searchBtn.addEventListener('click', () => {
+  articleModal.classList.add('w-11/12')
+  articleModal.classList.add('h-11/12')
+  articleModal.classList.remove('overflow-hidden')
   let searchValue = searchBox.value
   searchWikiApi(searchValue)
   console.log(searchValue)
   searchBox.value = ""
+})
+
+closeModalBtn.addEventListener('click', () => {
+  articleModal.classList.remove('w-11/12')
+  articleModal.classList.remove('h-11/12')
+  articleModal.classList.add('overflow-hidden')
 })
 
 
@@ -156,7 +166,7 @@ function createInformation(data) {
 
   // Check if it's a disambiguation page or missing important info
   if (data.type === "disambiguation" || !data.thumbnail) {
-      featuredArticle.innerHTML = `
+      articleModal.innerHTML = `
       <div class="text-center">
           <h2 class="text-lg font-semibold mb-2">${data.title}</h2>
           <p>This search term refers to multiple topics. Please be more specific or <a href="https://en.wikipedia.org/wiki/${data.title}" class="text-blue-600 underline" target="_blank">view the full disambiguation page here</a>.</p>
