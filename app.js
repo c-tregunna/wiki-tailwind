@@ -1,4 +1,3 @@
-
 const themeBtn = document.getElementById('theme-btn')
 const lightDarkIcon = document.getElementById('light-dark-icon')
 const showNavBtn = document.getElementById('show-nav-btn')
@@ -158,7 +157,7 @@ searchBtn.addEventListener('click', () => {
   modalBackground.classList.add('opacity-100');
 
   articleModal.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
-  articleModal.classList.add('opacity-100', 'scale-100', 'w-11/12', 'h-11/12');
+  articleModal.classList.add('opacity-100', 'scale-100', 'w-11/12', 'h-11/12', 'md:w-1/2');
   
   let searchValue = searchBox.value
   searchWikiApi(searchValue)
@@ -171,7 +170,7 @@ closeModalBtn.addEventListener('click', () => {
   modalBackground.classList.remove('opacity-100');
 
   articleModal.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
-  articleModal.classList.remove('opacity-100', 'scale-100', 'w-11/12', 'h-11/12');
+  articleModal.classList.remove('opacity-100', 'scale-100', 'w-11/12', 'h-11/12', 'md:w-1/2');
 })
 
 
@@ -194,22 +193,66 @@ function createInformation(data) {
   featuredArticle.innerHTML = `
   <div class="h-full overflow-y-auto px-4 py-6">
     <div class="flex flex-col items-center gap-4 relative">
-
-      <h2 class="text-lg md:text-4xl mb-2">${data.title}</h2>
-
+      <h2 class="text-lg md:text-4xl mb-2" id="article-title">${data.title}</h2>
       <div class="bg-dark-grey/15 p-4 rounded-sm outline outline-white/25 w-full md:w-1/4 mb-6">
         <img src="${data.thumbnail.source}" class="object-cover mx-auto rounded-sm">
       </div>
-
       ${data.extract_html || "No description available."}
-
-      <p class="mt-2">Read full article <a href="https://en.wikipedia.org/wiki/${data.title}" class="text-blue-600 underline" target="_blank">here</a></p>
+      <p class="mt-2">Read full article <a href="https://en.wikipedia.org/wiki/${data.title}" class="text-blue-600 underline" target="_blank" id="article-link">here</a></p>
     </div>
   </div>
 `;
 
+  // Add bookmark functionality after the article is rendered
+  const bookmarkBtn = document.getElementById('bookmark-btn');
+  if (bookmarkBtn) {
+    bookmarkBtn.addEventListener('click', () => {
+      const title = document.getElementById('article-title').textContent;
+      const link = document.getElementById('article-link').href;
 
+      // Get existing bookmarks from localStorage
+      let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+      
+      // Check if article is already bookmarked
+      const isAlreadyBookmarked = bookmarks.some(bookmark => bookmark.link === link);
+      
+      if (!isAlreadyBookmarked) {
+        bookmarks.push({ title, link });
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        alert('Great news! Your article has been bookmarked safely. Top job!!');
+      } else {
+        alert('This article is already bookmarked!');
+      }
+    });
+  }
 }
+
+console.log(document.getElementById('bookmark-btn')); 
+
+// Add this JS to the page where articles are shown
+document.querySelectorAll('#bookmark-btn').forEach(button => {
+  button.addEventListener('click', function () {
+    const article = this.closest('article');
+    const title = article.getElementById('article-title').textContent;
+    const link = article.getElementById('article-link').href;
+
+    const bookmark = { title, link };
+
+    // Get current bookmarks from localStorage
+    let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+
+    // Check if it's already saved
+    const isAlreadyBookmarked = bookmarks.some(b => b.link === link);
+    if (!isAlreadyBookmarked) {
+      bookmarks.push(bookmark);
+      localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+      alert("Bookmarked!");
+    } else {
+      alert("Already bookmarked!");
+    }
+  });
+});
+
 
 
 
