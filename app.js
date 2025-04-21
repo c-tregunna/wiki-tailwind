@@ -181,7 +181,7 @@ function createInformation(data) {
 
   // Check if it's a disambiguation page or missing important info
   if (data.type === "disambiguation" || !data.thumbnail) {
-      articleModal.innerHTML = `
+    featuredArticle.innerHTML = `
       <div class="text-center">
           <h2 class="text-lg font-semibold mb-2">${data.title}</h2>
           <p>This search term refers to multiple topics. Please be more specific or <a href="https://en.wikipedia.org/wiki/${data.title}" class="text-blue-600 underline" target="_blank">view the full disambiguation page here</a>.</p>
@@ -194,10 +194,11 @@ function createInformation(data) {
   <div class="h-full overflow-y-auto px-4 py-6">
     <div class="flex flex-col items-center gap-4 relative">
       <h2 class="text-lg md:text-4xl mb-2" id="article-title">${data.title}</h2>
-      <div class="bg-dark-grey/15 p-4 rounded-sm outline outline-white/25 w-full md:w-1/4 mb-6">
-        <img src="${data.thumbnail.source}" class="object-cover mx-auto rounded-sm">
+      <div class="p-4 rounded-sm w-full md:w-1/3 mb-6">
+        <img src="${data.thumbnail.source}" class="object-cover mx-auto rounded-sm drop-shadow-md">
       </div>
-      ${data.extract_html || "No description available."}
+      <p><span class="font-bold">Description:</span> ${data.description}</p>
+      <p class="font-thin w-10/12 mx-auto"><span class="font-bold">Article Extract:</span> ${data.extract || "No description available."}</p>
       <p class="mt-2">Read full article <a href="https://en.wikipedia.org/wiki/${data.title}" class="text-blue-600 underline" target="_blank" id="article-link">here</a></p>
     </div>
   </div>

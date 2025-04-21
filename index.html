@@ -12,11 +12,15 @@
 <body class="text-dark-grey bg-light-grey font-sans font-extralight relative h-screen">
     <div class="max-w-[1000px] mx-auto h-screen bg-light-grey">
         <header class="flex justify-between items-center px-10 py-4 flex-col md:flex-row">
-            <h1 class="text-4xl md:text-8xl mb-4">wiki+</h1>
+            <div class="mb-4 md:mb-0">
+                <h1 class="text-4xl md:text-7xl text-center md:text-left">wiki+</h1>
+                <span class="text-sm pl-2">Keeping knowledge simple</span>
+            </div>
+
             <div class="flex gap-4 items-center">
-                <span id="message" class="font-black text-sm md:text-lg"> Welcome to Wiki+</span>
+                <span id="message" class="font-medium text-sm md:text-lg"> Welcome to Wiki+</span>
                 <div class="h-10 w-10 rounded-full border flex justify-center items-center relative overflow-hidden" data-popover-target="popover-profile" id="profile-icon-container">
-                    <span id="fallback-text" class="text-sm font-ubuntu font-black">W+</span>
+                    <span id="fallback-text" class="text-sm font-ubuntu font-black hover:cursor-pointer">W+</span>
                     <img src="" alt="profile icon" id="profile-icon" class="absolute inset-0 w-full h-full rounded-full object-cover hidden" />
                 </div>
                 
@@ -50,16 +54,17 @@
                     <div data-popper-arrow></div>
                 </div>
                     <!-- light/dark mode btn -->
-                <button id="theme-btn" class="btn">
-                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="#454545"  class="icon icon-tabler icons-tabler-filled icon-tabler-brightness" id="light-dark-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 3.34a10 10 0 1 1 -15 8.66l.005 -.324a10 10 0 0 1 14.995 -8.336m-9 1.732a8 8 0 0 0 4.001 14.928l-.001 -16a8 8 0 0 0 -4 1.072" /></svg>
+                <button id="theme-btn" class="hover:cursor-pointer">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="#454545"  class="icon icon-tabler icons-tabler-filled icon-tabler-brightness dark:fill-dark-grey" id="light-dark-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 3.34a10 10 0 1 1 -15 8.66l.005 -.324a10 10 0 0 1 14.995 -8.336m-9 1.732a8 8 0 0 0 4.001 14.928l-.001 -16a8 8 0 0 0 -4 1.072" /></svg>
                 </button>
             </div>
         </header>
 
         <main class="h-2/3 w-full flex justify-center items-center">
+
             <section class="w-full flex justify-center py-4 px-2 flex-col items-center">
-                <input type="search" placeholder="search wiki+" class="w-10/12 max-w-[600px] input-border border-dark-grey/30 rounded-xs py-4 placeholder:text-gray-400 focus:drop-shadow-xl focus:border-dark-grey/10 focus:ring-0" id="search-box">
-                <button id="search-btn" class="ring-1 py-4 px-20 uppercase ring-black/30 mt-4 rounder-xs text-dark-grey font-medium dark:bg-dark-grey dark:text-light-grey cursor-pointer hover:shadow-xl">Let's go!</button>
+                <input type="search" placeholder="search wiki+" class="w-10/12 max-w-[600px] input-border border-dark-grey/30 rounded-xs py-4 placeholder:text-gray-400 focus:drop-shadow-xl focus:border-dark-grey/10 focus:ring-0 dark:text-light-grey" id="search-box">
+                <button id="search-btn" class="border py-4 px-20 uppercase border-dark-grey/30 hover:border-dark-grey/10 mt-4 rounded-xs text-dark-grey font-medium dark:bg-dark-grey dark:text-light-grey cursor-pointer hover:shadow-xl">Let's go!</button>
             </section>
 
             <!-- artical modal -->
@@ -67,7 +72,7 @@
                 <section id="article-modal" class="opacity-0 scale-90 w-0 h-0 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 duration-500 ease-out bg-light-grey shadow-2xl rounded-lg pointer-events-none">
 
                     <div class="flex bg-slate-200/30 py-2 px-4 justify-between items-center">
-                        <span class="text-xl uppercase cursor-pointer" id="close-modal">Close</span>
+                        <span class="text-xl uppercase cursor-pointer" id="close-modal">X</span>
                         <span class="cursor-pointer hover:scale-105" id="bookmark-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
